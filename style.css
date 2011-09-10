@@ -1,0 +1,48 @@
+body {
+    background: #EEE;
+    font: 13px sans-serif;
+    margin: 0;
+}
+
+.logo {
+    background: #CCC;
+    border-bottom: 1px solid #AAA;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 18px;
+    padding: 4px 0 0 4px;
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 200000;
+    width: 100%;
+}
+
+#posts {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: 22px 0 0 0;
+    width: 100%;
+    max-width: 500px;
+}
+
+.p {
+    background: #FFF;
+    font-size: 1.2em;
+    margin: 0 0 8px 0;
+    padding: 6px 10px 6px 6px;
+}
+
+.u {
+    font-weight: bold;
+    margin: 0 6px 0 0;
+}
+
+.d {
+    color: #CCC;
+}
+
+.m {
+    margin: 4px 0 0 0;
+}
