@@ -11,7 +11,7 @@ stored_pos = 0 # TODO persist
 post_store = new store.Store
 
 fb_collector = new facebook.Collector(post_store)
-fb_collector.update()
+fb_collector.update('', 200)
 
 if false
     testdata = []
