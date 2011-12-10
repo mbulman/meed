@@ -1,10 +1,17 @@
 express = require('express')
 facebook = require('./facebook')
+twitter = require('./twitter')
 store = require('./store')
 
 # TODO setup build process (compilation, compression, optimization)
 # TODO mark all as read
 # TODO "paging" for mobile
+# TODO add twitter screenname
+# TODO parse links in bodies
+# TODO parse twitter names in bodies
+# TODO sort by date
+# TODO remember last gotten
+# TODO periodically update
 
 stored_pos = 0 # TODO persist
 
@@ -12,6 +19,8 @@ post_store = new store.Store
 
 fb_collector = new facebook.Collector(post_store)
 fb_collector.update('', 200)
+
+(new twitter.Collector(post_store)).update('', 200)
 
 if false
     testdata = []
