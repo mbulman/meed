@@ -8,7 +8,7 @@ TOKEN_FILE = './fbauthtoken'
 class Collector
     constructor: (@store) ->
 
-    update: ->
+    update: (since, limit) ->
         token = getToken()
         if token
             fb.apiCall 'GET', '/me/home', {access_token:token}, (err, resp, body) =>
