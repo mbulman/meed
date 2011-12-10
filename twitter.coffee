@@ -4,24 +4,33 @@ util = require('./util')
 store = require('./store')
 
 TOKEN_FILE = './twauthtoken'
+CONSUMER_FILE = './twconsumerkey'
 
 class Collector
     constructor: (@store) ->
 
     update: (since, limit) ->
-        token_file = getToken()
-        if token_file
+        token_file = getFileContents(TOKEN_FILE)
+        consumer_file = getFileContents(CONSUMER_FILE)
+        if token_file and consumer_file
             parts = token_file.split("\n")
             token = parts[0]
             token_secret = parts[1]
+
+            parts = consumer_file.split("\n")
+            consumer_key = parts[0]
+            consumer_secret = parts[1]
+
             twit = new twitter({
-                consumer_key: 'NmbnSBsbGfER6nYuoe7aWw',
-                consumer_secret: 'fiZriZSswj6H3gQZolgwB0ct0mHDFpOilo0sUUdEQ',
+                consumer_key: consumer_key,
+                consumer_secret: consumer_secret,
                 access_token_key: token,
                 access_token_secret: token_secret
             })
             twit.get '/statuses/home_timeline.json', {}, (err, data) =>
                 items = []
+                console.log(err)
+                console.log(data)
                 if err
                     return # TODO Error handling
 
@@ -39,7 +48,7 @@ class Collector
 
 exports.Collector = Collector
 
-exports.getToken = getToken = ->
-    if util.fileExists(TOKEN_FILE)
-        return fs.readFileSync(TOKEN_FILE, 'utf8')
+exports.getFileContents = getFileContents = (file_name) ->
+    if util.fileExists(file_name)
+        return fs.readFileSync(file_name, 'utf8')
 
