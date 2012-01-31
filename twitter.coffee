@@ -29,15 +29,14 @@ class Collector
             })
             twit.get '/statuses/home_timeline.json', {}, (err, data) =>
                 items = []
-                console.log(err)
-                console.log(data)
                 if err
-                    return # TODO Error handling
+                    # TODO error handling
+                    throw err
 
                 for item in data
-                    console.log(item)
                     items.push({
-                        created: item.created_at,
+                        type: null,
+                        created: new Date(item.created_at).getTime(),
                         name: item.user.name,
                         message: item.text
                     })

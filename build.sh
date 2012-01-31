@@ -1,4 +1,4 @@
-npm install express facebook-js ntwitter
+npm install express facebook-js ntwitter sqlite3
 
 coffee -c *.coffee
 

@@ -49,8 +49,9 @@ class Collector
                     name: item.from.name,
                     message: item.message,
                 })
-            else
-                console.log("Unknown fb item:", item)
+            # TODO
+            #else
+                #console.log("Unknown fb item:", item)
         retval
 
 exports.Collector = Collector
