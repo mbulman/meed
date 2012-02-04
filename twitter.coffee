@@ -38,11 +38,15 @@ class Collector
                         type: null,
                         created: new Date(item.created_at).getTime(),
                         name: item.user.name,
-                        message: item.text
+                        message: item.text,
+                        source: this._createTwitterStatusLink(item.user.screen_name, item.id_str)
                     })
 
                 @store.addItems(items)
                 return
+
+    _createTwitterStatusLink: (name, id) ->
+        return 'http://twitter.com/#!/' + name + '/status/' + id
 
 
 exports.Collector = Collector

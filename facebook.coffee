@@ -48,6 +48,8 @@ class Collector
                     created: new Date(item.created_time).getTime(),
                     name: item.from.name,
                     message: item.message,
+                    # TODO better way to get permalink?
+                    source: null, # item.actions[0].link, 
                 })
             # TODO
             #else
