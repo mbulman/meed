@@ -15,7 +15,7 @@ domReady ->
     callApi '/items', (items) ->
         _drawItems(document.getElementById('posts'), items)
 
-        setTimeout(-> 
+        setTimeout(->
                 window.scrollTo(0, 0)
                 callApi('/pos', (pos) ->
                     pos = parseInt(pos, 10)
