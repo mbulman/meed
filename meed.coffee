@@ -28,7 +28,8 @@ app.use(express.bodyParser())
 app.use(express.static(__dirname + '/'))
 
 app.get '/items', (req, res) ->
-    res.send(post_store.getItems())
+    post_store.getItems (items) ->
+        res.send(items)
 
 app.get '/pos', (req, res) ->
     console.log("Sending stored position:", stored_pos)
