@@ -10,9 +10,9 @@ class Store
         this._setupDb()
 
     addItems: (items) ->
-        s = @db.prepare('INSERT INTO items (type,created,name,message) VALUES(?,?,?,?)')
+        s = @db.prepare('INSERT INTO items (type,created,name,message,source) VALUES(?,?,?,?,?)')
         for item in items
-            s.run(item.type, item.created, item.name, item.message)
+            s.run(item.type, item.created, item.name, item.message, item.source)
         s.finalize()
 
     getItems: (cb) ->
@@ -28,7 +28,7 @@ class Store
 
     _setupDb: ->
         @db.serialize =>
-            @db.run("CREATE TABLE items (type, created, name, message)")
+            @db.run("CREATE TABLE items (type, created, name, message, source)")
             @db.run("CREATE INDEX type_idx ON items (type)")
             @db.run("CREATE INDEX created_idx ON items (created)")
             @db.run("CREATE INDEX name_idx ON items (name)")
