@@ -48,11 +48,13 @@ class Collector
                     created: new Date(item.created_time).getTime(),
                     name: item.from.name,
                     message: item.message,
+                    # TODO better way to get permalink?
+                    source: item.actions[0].link,
                 })
             # TODO
             #else
                 #console.log("Unknown fb item:", item)
-        retval
+        return retval
 
 exports.Collector = Collector
 

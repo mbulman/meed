@@ -41,9 +41,18 @@ _drawItems = (parent, items) ->
 _drawItem = (item) ->
     d = document.createElement('div')
     d.className = 'p'
+
+    date = new Date(item.created)
+    date_str = date.toDateString() + ' ' + date.toLocaleTimeString()
+
+    permalink = date_str
+    if item.source != null
+        permalink = """
+        <a href="#{item.source}">#{date_str}</a>
+        """
     d.innerHTML = """
         <span class="u">#{item.name}</span>
-        <span class="d">#{new Date(item.created).toLocaleString()}</span>
+        <span class="d">#{permalink}</span>
         <div class="m">#{item.message}</div>
         """
     return d
