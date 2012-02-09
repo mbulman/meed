@@ -46,7 +46,7 @@ _drawItem = (item) ->
     date_str = date.toDateString() + ' ' + date.toLocaleTimeString()
 
     permalink = date_str
-    if item.source != undefined
+    if item.source != null
         permalink = """
         <a href="#{item.source}">#{date_str}</a>
         """

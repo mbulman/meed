@@ -49,12 +49,12 @@ class Collector
                     name: item.from.name,
                     message: item.message,
                     # TODO better way to get permalink?
-                    source: null, # item.actions[0].link, 
+                    source: item.actions[0].link,
                 })
             # TODO
             #else
                 #console.log("Unknown fb item:", item)
-        retval
+        return retval
 
 exports.Collector = Collector
 
