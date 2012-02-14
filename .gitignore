@@ -1,2 +1,7 @@
 *.js
 build
+fbauthtoken
+twauthtoken
+twconsumerkey
+node_modules
+
