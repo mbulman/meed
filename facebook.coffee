@@ -53,7 +53,6 @@ class Collector
             # TODO
             #else
                 #console.log("Unknown fb item:", item)
-        console.log(retval)
         return retval
 
     _createFacebookPostLink: (id) ->
