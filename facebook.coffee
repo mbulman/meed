@@ -34,7 +34,7 @@ class Collector
         retval = []
 
         for item in items
-            #console.log(item)
+            #winston.debug('Facebook item', item)
             link = null
             switch item.type
                 when "status", "link"
@@ -53,7 +53,7 @@ class Collector
                 })
             # TODO
             #else
-                #console.log("Unknown fb item:", item)
+                #winston.debug('Unknown Facebook item', item)
         winston.debug('Storing '+retval.length+' facebook items')
         winston.verbose('Facebook items', retval)
         retval
