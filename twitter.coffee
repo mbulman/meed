@@ -11,7 +11,7 @@ class Collector
     constructor: (@store) ->
 
     update: (since, limit) ->
-        winston.debug('Updating Twitter items', { since: since, limit: limit })
+        winston.debug 'Updating Twitter items', { since: since, limit: limit }
         token_file = getFileContents(TOKEN_FILE)
         consumer_file = getFileContents(CONSUMER_FILE)
         if token_file and consumer_file
@@ -43,8 +43,8 @@ class Collector
                         message: item.text
                     })
 
-                winston.debug('Storing ' + items.length + ' Twitter items')
-                winston.verbose('Twitter items', items)
+                winston.debug 'Storing ' + items.length + ' Twitter items'
+                winston.verbose 'Twitter items', items
                 @store.addItems(items)
                 return
 

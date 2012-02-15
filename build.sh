@@ -6,4 +6,4 @@ coffee -c *.coffee
 npm install -g ender
 mkdir build
 cd build
-ender build domready reqwest
+ender build domready reqwest winston
