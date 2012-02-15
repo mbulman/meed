@@ -1,6 +1,5 @@
 reqwest = require('reqwest')
 domReady = require('domready')
-winston = require('winston')
 
 callApi = (url, cb, data) -> 
     reqwest({
@@ -22,7 +21,7 @@ domReady ->
                     pos = parseInt(pos, 10)
                     e = document.getElementById(pos)
                     if pos and e and e.offsetTop
-                        winston.info('Scrolling after /pos call', [ pos, e, e.offsetTop ])
+                        console.log pos, e, e.offsetTop
                         window.scrollTo(0, e.offsetTop)
 
                     timer = null
@@ -59,6 +58,6 @@ _saveScroll = ->
         elem = elem.parentNode
 
     if elem.id
-        winston.info('Calling /pos', elem.id)
+        console.log elem.id
         callApi('/pos', (->), elem.id)
     return
