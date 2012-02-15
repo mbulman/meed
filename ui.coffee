@@ -1,5 +1,6 @@
 reqwest = require('reqwest')
 domReady = require('domready')
+winston = require('winston')
 
 callApi = (url, cb, data) -> 
     reqwest({
