@@ -2,6 +2,7 @@ fb = require('facebook-js') #TODO change if/when pull request is accepted
 #fb = require('../facebook-js')
 fs = require('fs')
 util = require('./util')
+winston = require('winston')
 
 TOKEN_FILE = './fbauthtoken'
 
@@ -9,6 +10,7 @@ class Collector
     constructor: (@store) ->
 
     update: (since, limit) ->
+        winston.debug 'Updating Facebook items', { since: since, limit: limit }
         token = getToken()
         if token
             @_getItems token, since, limit, (items) =>
@@ -32,7 +34,7 @@ class Collector
         retval = []
 
         for item in items
-            #console.log(item)
+            #winston.debug 'Facebook item', item
             link = null
             switch item.type
                 when "status", "link"
@@ -53,8 +55,10 @@ class Collector
                 })
             # TODO
             #else
-                #console.log("Unknown fb item:", item)
-        return retval
+                #winston.debug 'Unknown Facebook item', item
+        winston.debug 'Storing '+retval.length+' facebook items'
+        winston.verbose 'Facebook items', retval
+        retval
 
 exports.Collector = Collector
 

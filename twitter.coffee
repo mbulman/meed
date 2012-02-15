@@ -2,6 +2,7 @@ twitter = require('ntwitter')
 fs = require('fs')
 util = require('./util')
 store = require('./store')
+winston = require('winston')
 
 TOKEN_FILE = './twauthtoken'
 CONSUMER_FILE = './twconsumerkey'
@@ -10,6 +11,7 @@ class Collector
     constructor: (@store) ->
 
     update: (since, limit) ->
+        winston.debug 'Updating Twitter items', { since: since, limit: limit }
         token_file = getFileContents(TOKEN_FILE)
         consumer_file = getFileContents(CONSUMER_FILE)
         if token_file and consumer_file
@@ -42,6 +44,8 @@ class Collector
                         source: this._createTwitterStatusLink(item.user.screen_name, item.id_str)
                     })
 
+                winston.debug 'Storing ' + items.length + ' Twitter items'
+                winston.verbose 'Twitter items', items
                 @store.addItems(items)
                 return
 

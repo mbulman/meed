@@ -1,4 +1,6 @@
 express = require('express')
+winston = require('winston')
+
 facebook = require('./facebook')
 twitter = require('./twitter')
 store = require('./store')
@@ -32,11 +34,11 @@ app.get '/items', (req, res) ->
         res.send(items)
 
 app.get '/pos', (req, res) ->
-    console.log("Sending stored position:", stored_pos)
+    winston.info 'Sending stored position', stored_pos
     res.send(""+stored_pos)
 
 app.put '/pos', (req, res) ->
-    console.log("Saving position:", req.body)
+    winston.info 'Saving position', { position: req.body }
     stored_pos = req.body
 
 app.listen(3000)
