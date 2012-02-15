@@ -50,8 +50,7 @@ class Collector
                     created: new Date(item.created_time).getTime(),
                     name: item.from.name,
                     message: item.message,
-                    # TODO better way to get permalink?
-                    source: item.actions[0].link,
+                    source: @_createFacebookPostLink(item.id),
                 })
             # TODO
             #else
@@ -59,6 +58,14 @@ class Collector
         winston.debug 'Storing '+retval.length+' facebook items'
         winston.verbose 'Facebook items', retval
         retval
+
+    _createFacebookPostLink: (id) ->
+        link = null
+        parts = id.split '_'
+        if parts.length == 2
+            link = 'https://www.facebook.com/' + parts[0] + '/posts/' + parts[1]
+
+        return link
 
 exports.Collector = Collector
 

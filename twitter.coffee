@@ -41,7 +41,7 @@ class Collector
                         created: new Date(item.created_at).getTime(),
                         name: item.user.name,
                         message: item.text,
-                        source: this._createTwitterStatusLink(item.user.screen_name, item.id_str)
+                        source: @_createTwitterStatusLink(item.user.screen_name, item.id_str)
                     })
 
                 winston.debug 'Storing ' + items.length + ' Twitter items'
